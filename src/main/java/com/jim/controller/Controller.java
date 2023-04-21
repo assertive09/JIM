@@ -1,7 +1,9 @@
 package com.jim.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -37,6 +39,17 @@ public class Controller {
         }
         System.out.println(student);
         return mv;
+    }
+
+    @RequestMapping("/signup")
+    public String signupHandler(){
+        return "signup";
+    }
+
+    @RequestMapping(value="/createaccount" ,method = RequestMethod.POST)
+    public String createAccountHandler(@ModelAttribute ("student") Student student){
+        this.studentRepo.save(student);
+        return "/studentlogin";
     }
 
 }

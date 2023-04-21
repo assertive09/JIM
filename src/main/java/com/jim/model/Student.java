@@ -23,14 +23,14 @@ public class Student {
     private String password;
 
     @Column(name = "mobile_number")
-    private long mobileNumber;
+    private String mobileNumber;
 
     private String address;
 
     public Student() {
     }
 
-    public Student(int sId, String name, String email, long mobileNumber, String address , String password) {
+    public Student(int sId, String name, String email, String mobileNumber, String address , String password) {
         this.sId = sId;
         this.name = name;
         this.email = email;
@@ -63,11 +63,11 @@ public class Student {
         this.email = email;
     }
 
-    public long getMobileNumber() {
+    public String getMobileNumber() {
         return mobileNumber;
     }
 
-    public void setMobileNumber(long mobileNumber) {
+    public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
     }
 

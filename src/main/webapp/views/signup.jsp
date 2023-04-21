@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,8 +29,8 @@
 
         /* Set form size */
         .form-container {
-            width: 500px;
-            height: 400px;
+            width: 600px;
+            height: 620px;
             padding: 30px;
              background-color: black;
             border: 1px solid #ccc;
@@ -35,26 +38,32 @@
         }
 </style>
 <body>
-    <div class="container center">
+    <div class="container center text">
         <div class="form-container">
             <h1 class="text-center mb-2 text-white">Student Login</h1>
-            <form method="post" action="/checkValidStudent">
-
+          <form method="post" action="/createaccount">
+            <div class="form-group">
+				<label for="name" class=" text-white">Name:</label>
+				<input type="text" class="form-control" name="name"id="name" placeholder="Enter your name">
+			</div>
                 <div class="form-group">
                     <label for="email" class=" text-white">Email:</label>
                     <input type="email" name="email" class="form-control" id="email" placeholder="Enter email">
                 </div>
-                <div class="form-group mb-3">
+                <div class="form-group">
                     <label for="password"  class=" text-white">Password:</label>
                     <input type="password" name="password" class="form-control" id="password" placeholder="Enter password">
                 </div>
-                <a href="/forget_password">Forget Password</a>
-                <br>
-                <span class="text-white">OR</span><br>
-                <a href="/signup">Create an account</a>
-                <br>
-                <div class="container text-center">
-                <button type="submit" class="btn btn-primary">Login</button>
+                <div class="form-group">
+                    <label for="mobile" class="text-white">Mobile number:</label>
+                    <input type="tel" class="form-control " name="mobileNumber" id="mobile" placeholder="Enter your mobile number">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="address" class="text-white">Address:</label>
+                    <textarea name="address" class="form-control" id="address" rows="3" placeholder="Enter your address"></textarea>
+                </div>
+                <div class="container text-center ">
+                <button type="submit" class="btn btn-primary ">Create Account</button>
                 &nbsp;&nbsp;&nbsp;
                 <button type="reset" class="btn btn-primary">Clear</button>
             </div>
@@ -70,3 +79,6 @@
 
 
 </html>
+
+
+
