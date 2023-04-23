@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jim.model.Student;
+import com.jim.repository.AdminRepo;
 import com.jim.repository.StudentRepo;
 
 @org.springframework.stereotype.Controller
@@ -16,8 +17,11 @@ public class Controller {
     @Autowired
     private StudentRepo studentRepo;
 
+    @Autowired
+    private AdminRepo adminRepo;
+
     @RequestMapping("/studentlogin")
-    public String homeHandeler() {
+    public String studentLogin() {
         return "studentlogin";
     }
 
@@ -31,9 +35,10 @@ public class Controller {
             @RequestParam("password") String password) {
         ModelAndView mv = new ModelAndView();
         Student student=this.studentRepo.getStudentByNameandPassword(email,password);
-        mv.addObject("student", student);
         if (student != null) {
-            mv.setViewName("studentdashboard");
+            mv.setViewName("student_home");
+            mv.addObject("student", student);
+
         } else {
             mv.setViewName("studentlogin");
         }
@@ -41,9 +46,9 @@ public class Controller {
         return mv;
     }
 
-    @RequestMapping("/signup")
+    @RequestMapping("/signup_student")
     public String signupHandler(){
-        return "signup";
+        return "signup_student";
     }
 
     @RequestMapping(value="/createaccount" ,method = RequestMethod.POST)
@@ -52,4 +57,9 @@ public class Controller {
         return "/studentlogin";
     }
 
+    @RequestMapping("/adminlogin")
+    public String adminLogin(){
+        return "adminlogin";
+    }
+    
 }
