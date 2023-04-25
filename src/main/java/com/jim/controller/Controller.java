@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.jim.model.Admin;
+import com.jim.model.Msg;
 import com.jim.model.Student;
 import com.jim.repository.AdminRepo;
 import com.jim.repository.StudentRepo;
@@ -34,7 +36,7 @@ public class Controller {
     public ModelAndView checkValidStudent(@RequestParam("email") String email,
             @RequestParam("password") String password) {
         ModelAndView mv = new ModelAndView();
-        Student student=this.studentRepo.getStudentByNameandPassword(email,password);
+        Student student = this.studentRepo.getStudentByNameandPassword(email, password);
         if (student != null) {
             mv.setViewName("student_home");
             mv.addObject("student", student);
@@ -42,24 +44,39 @@ public class Controller {
         } else {
             mv.setViewName("studentlogin");
         }
-        System.out.println(student);
         return mv;
     }
 
     @RequestMapping("/signup_student")
-    public String signupHandler(){
+    public String signupHandler() {
         return "signup_student";
     }
 
-    @RequestMapping(value="/createaccount" ,method = RequestMethod.POST)
-    public String createAccountHandler(@ModelAttribute ("student") Student student){
+    @RequestMapping(value = "/createaccount", method = RequestMethod.POST)
+    public String createAccountHandler(@ModelAttribute("student") Student student) {
         this.studentRepo.save(student);
-        return "/studentlogin";
+        return "studentlogin";
     }
 
     @RequestMapping("/adminlogin")
-    public String adminLogin(){
+    public String adminLogin() {
         return "adminlogin";
     }
-    
+
+    @RequestMapping("/checkValidAdmin")
+    public ModelAndView checkValidAdmin(@RequestParam("email") String email,
+            @RequestParam("password") String password) {
+        ModelAndView mv = new ModelAndView();
+        Admin admin = adminRepo.getAdminByNameandPassword(email, password);
+       
+        if (admin != null) {
+            mv.addObject("admin", admin);
+            mv.setViewName("admin_dashboard");
+        } else {
+            mv.setViewName("adminlogin");
+            mv.addObject("msg", new Msg("Invalid email or password"));
+        }
+        return mv;
+    }
+
 }
