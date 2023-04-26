@@ -1,6 +1,10 @@
 <!DOCTYPE html>
+<%@page import="com.jim.model.Admin"%>
 <html lang="en">
-
+<%
+Admin admin=(Admin)request.getAttribute("admin");
+session.setAttribute("admin",admin);
+%>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,7 +32,7 @@
      <div class="color-overlay d-flex justify-content-center align-items-center"> -->
             <div class="container center text">
                 <div id="div1" class="text-center bg-secondary">
-                    <a href="show_all_student">Check All Students</a>
+                    <a href="all_student">Check All Students</a>
                 </div>
               &nbsp;
                 <div id="div2" class="text-center bg-secondary ">

@@ -1,5 +1,7 @@
 package com.jim.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +14,8 @@ import com.jim.model.Msg;
 import com.jim.model.Student;
 import com.jim.repository.AdminRepo;
 import com.jim.repository.StudentRepo;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @org.springframework.stereotype.Controller
 public class Controller {
@@ -78,5 +82,15 @@ public class Controller {
         }
         return mv;
     }
-
+@RequestMapping("/all_student")
+public ModelAndView showAllStudent(HttpServletRequest r) {
+	ModelAndView mv=new ModelAndView();
+	Admin a=(Admin) r.getAttribute("admin");
+	
+	System.out.println(a);
+	List<Student> students=this.studentRepo.getAllStudent();
+	mv.addObject("students",students);
+	mv.setViewName("all_student");
+	return mv;
+}
 }
