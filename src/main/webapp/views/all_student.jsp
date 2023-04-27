@@ -1,7 +1,13 @@
 <!doctype html>
+<%@page import="com.jim.model.Admin"%>
 <%@page isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%
+Admin admin = (Admin) session.getAttribute("admin");
+if (admin == null) {
+	response.sendRedirect("/adminlogin");
+}
+%>
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1">
@@ -10,20 +16,23 @@
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="/resources/css/style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-  .form-container {
-        width: auto;
-        height: auto;
-        padding: 30px;
-        background-color: black;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }</style>
+.form-container {
+	width: auto;
+	height: auto;
+	padding: 30px;
+	background-color: black;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+</style>
 </head>
 <body>
 	<div class="masthead"
 		style="background-image: url('/resources/img/home.jpeg');">
+		<%@include file="navbar_admin.jsp"%>
 		<div
 			class="color-overlay d-flex justify-content-center align-items-center">
 			<div class="container center text">

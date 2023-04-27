@@ -2,8 +2,10 @@
 <%@page import="com.jim.model.Admin"%>
 <html lang="en">
 <%
-Admin admin=(Admin)request.getAttribute("admin");
-session.setAttribute("admin",admin);
+Admin admin=(Admin) session.getAttribute("admin");
+if(admin==null){
+	response.sendRedirect("/adminlogin");
+}
 %>
 <head>
     <meta charset="UTF-8">
@@ -29,6 +31,7 @@ session.setAttribute("admin",admin);
 
 <body>
     <div class="masthead" style="background-image: url('/resources/img/home.jpeg');">
+    <%@include file="navbar_admin.jsp"%>
      <div class="color-overlay d-flex justify-content-center align-items-center"> -->
             <div class="container center text">
                 <div id="div1" class="text-center bg-secondary">
@@ -39,9 +42,9 @@ session.setAttribute("admin",admin);
                     <a href="event_dashboard">Events</a>
                 </div>
             </div>
-        </div>
-
     </div>
+    </div>
+    
     <!-- Bootstrap 4 JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
