@@ -60,7 +60,7 @@ if (admin == null) {
 									<td>${s.password}</td>
 									<td><a href="deleteStudent/${s.sId}"><i
 											class="fas fa-trash text-danger"></i></a> &nbsp; <a
-										href="updateStudent/${s.sId}"><i
+										href="editStudent/${s.sId}"><i
 											class="fas 	far fa-edit text-secondary"></i></a></td>
 								</tr>
 							</c:forEach>
