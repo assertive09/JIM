@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.jim.model.Admin;
+import com.jim.model.Event;
 import com.jim.model.Msg;
 import com.jim.model.Student;
 import com.jim.repository.AdminRepo;
+import com.jim.repository.EventRepo;
 import com.jim.repository.StudentRepo;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,6 +32,9 @@ public class Controller {
 
 	@Autowired
 	private AdminRepo adminRepo;
+	
+	@Autowired
+	private EventRepo eventRepo;
 
 	@RequestMapping("/studentlogin")
 	public String studentLogin() {
@@ -125,16 +130,23 @@ public class Controller {
 
 	@RequestMapping("/update-student")
 	public String updateStudent(@ModelAttribute("student") Student student) {
-//		Optional<Student> optional = this.studentRepo.findById(student.getsId());
-//		Student s = optional.get();
-//		s.setName(student.getName());
-//		s.setEmail(student.getEmail());
-//		s.setAddress(student.getAddress());
-//		s.setMobileNumber(student.getMobileNumber());
-//		s.setPassword(student.getPassword());
-		System.out.println(student);
 		this.studentRepo.save(student);
 		return "redirect:all_student";
 	}
 
+	@RequestMapping("/event-dashboard")
+	public String eventDashboard() {
+		return "event-dashboard";
+	}
+
+	@RequestMapping("/add-event-page")
+	public String addEventPage() {
+		return "add-event";
+	}
+	
+	@RequestMapping("/add_event")
+	public String addEvent(@ModelAttribute("event") Event event) {
+		this.eventRepo.save(event);
+		return "redirect:event-dashboard";
+	}
 }

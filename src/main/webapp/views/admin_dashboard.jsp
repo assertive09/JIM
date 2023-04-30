@@ -39,7 +39,7 @@ if(admin==null){
                 </div>
               &nbsp;
                 <div id="div2" class="text-center bg-secondary ">
-                    <a href="event_dashboard">Events</a>
+                    <a href="event-dashboard">Events</a>
                 </div>
             </div>
     </div>
