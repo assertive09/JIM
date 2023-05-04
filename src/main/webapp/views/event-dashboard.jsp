@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%@page import="com.jim.model.Admin"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html lang="en">
 <head>
 <%
@@ -21,7 +22,7 @@ if(admin==null){
 <style>
 /* Set form size */
 .form-container {
-	width: 600px;
+	width: auto;
 	height: auto;
 	padding: 30px;
 	background-color: black;
@@ -51,15 +52,38 @@ if(admin==null){
 		<div
 			class="color-overlay d-flex justify-content-center align-items-center">
 			<div class="container center text">
-				<div class="form-container text-center">
-				
-				
-				
+				<div class="form-container">
+					<table class="table">
+						<thead class="table-light">
+							<tr>
+								<th scope="col">E.Id</th>
+								<th scope="col">Name</th>
+								<th scope="col">Description</th>
+								<th scope="col">Date & Time</th>
+								<th scope="col">Actions</th>
+							</tr>
+						</thead>
+						<tbody class="text-white">
+							<c:forEach items="${events}" var="e">
+								<tr>
+									<th scope="row">${e.eId}</th>
+									<td>${e.name}</td>
+									<td>${e.description}</td>
+									<td>${e.date_time}</td>
+									
+									<%-- <td><a href="deleteStudent/${s.sId}"><i
+											class="fas fa-trash text-danger"></i></a> &nbsp; <a
+										href="editStudent/${s.sId}"><i
+											class="fas 	far fa-edit text-secondary"></i></a></td> --%>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
 	</div>
-
+	
 	<!-- Bootstrap 4 JS -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script

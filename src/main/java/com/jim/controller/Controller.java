@@ -135,8 +135,12 @@ public class Controller {
 	}
 
 	@RequestMapping("/event-dashboard")
-	public String eventDashboard() {
-		return "event-dashboard";
+	public ModelAndView eventDashboard() {
+			List<Event> events =(List<Event>) this.eventRepo.findAll();
+			System.out.println(events);
+			ModelAndView mv= new ModelAndView().addObject("events", events);
+			mv.setViewName("event-dashboard");
+			return mv;
 	}
 
 	@RequestMapping("/add-event-page")
