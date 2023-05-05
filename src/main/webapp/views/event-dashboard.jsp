@@ -4,8 +4,8 @@
 <html lang="en">
 <head>
 <%
-Admin admin=(Admin) session.getAttribute("admin");
-if(admin==null){
+Admin admin = (Admin) session.getAttribute("admin");
+if (admin == null) {
 	response.sendRedirect("/adminlogin");
 }
 %>
@@ -16,8 +16,10 @@ if(admin==null){
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
+	<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="stylesheet" href="/resources/css/style.css">
-<title>Admin||Portal</title>
+<title>Event||Dashboard</title>
 </head>
 <style>
 /* Set form size */
@@ -32,21 +34,23 @@ if(admin==null){
 </style>
 
 <body>
-   <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
-  <a class="navbar-brand" href="#">JIM</a>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="admin_dashboard">Home <span class="sr-only">(current)</span></a>
-      </li>
-        <li class="nav-item active">
-        <a class="nav-link" href="add-event-page">Add Event <span class="sr-only">(current)</span></a>
-      </li>
-    </ul>
-   
-      <a href="logout-admin"><button class="btn my-2 my-sm-0 text-danger btn btn-outline-danger" type="submit">Logout</button></a>
-  </div>
-</nav>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+		<a class="navbar-brand" href="#">JIM</a>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link"
+					href="/admin_dashboard">Home <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item active"><a class="nav-link"
+					href="/add-event-page">Add Event <span class="sr-only">(current)</span></a>
+				</li>
+			</ul>
+
+			<a href="logout-admin"><button
+					class="btn my-2 my-sm-0 text-danger btn btn-outline-danger"
+					type="submit">Logout</button></a>
+		</div>
+	</nav>
 	<div class="masthead"
 		style="background-image: url('/resources/img/home.jpeg');">
 		<div
@@ -70,11 +74,10 @@ if(admin==null){
 									<td>${e.name}</td>
 									<td>${e.description}</td>
 									<td>${e.date_time}</td>
-									
-									<%-- <td><a href="deleteStudent/${s.sId}"><i
+									<td><a href="delete-event/${e.eId}"><i
 											class="fas fa-trash text-danger"></i></a> &nbsp; <a
-										href="editStudent/${s.sId}"><i
-											class="fas 	far fa-edit text-secondary"></i></a></td> --%>
+										href="edit-event/${e.eId}"><i
+											class="fas 	far fa-edit text-secondary"></i></a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -83,7 +86,7 @@ if(admin==null){
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- Bootstrap 4 JS -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script

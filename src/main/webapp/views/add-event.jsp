@@ -44,8 +44,7 @@ if(admin==null){
 				<h1 class="text-center mb-3">Events Details</h1>
 				<div class="form-group">
 					<label for="name">Event Name</label> <input type="text"
-						class="form-control" aria-describedby="emailHelp" name="name"
-						placeholder="Enter the product name here">
+						class="form-control" aria-describedby="emailHelp" name="name">
 				</div>
 				<div class="form-group">
 					<label for="description">Description</label>

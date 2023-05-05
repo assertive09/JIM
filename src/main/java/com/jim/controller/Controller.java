@@ -95,7 +95,6 @@ public class Controller {
 
 	@RequestMapping("/admin_dashboard")
 	public String adminDashboard() {
-
 		return "admin_dashboard";
 	}
 
@@ -148,9 +147,15 @@ public class Controller {
 		return "add-event";
 	}
 	
-	@RequestMapping("/add_event")
+	@RequestMapping(value ="/add_event", method = RequestMethod.POST)
 	public String addEvent(@ModelAttribute("event") Event event) {
+		System.out.println(event);
 		this.eventRepo.save(event);
 		return "redirect:event-dashboard";
+	}
+	@RequestMapping("/delete-event/{eId}")
+	public ModelAndView deleteEvent(@PathVariable("eId") int eId,HttpServletRequest r) {
+		this.eventRepo.deleteById(eId);
+		return eventDashboard() ;
 	}
 }
