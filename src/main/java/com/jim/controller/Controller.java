@@ -36,14 +36,14 @@ public class Controller {
 	@Autowired
 	private EventRepo eventRepo;
 
-	@RequestMapping("/studentlogin")
+	@RequestMapping("/student-login")
 	public String studentLogin() {
-		return "studentlogin";
+		return "student-login";
 	}
 
-	@RequestMapping("/forget_password")
+	@RequestMapping("/forget-password")
 	public String forgetPasswordHandeler() {
-		return "forget_password";
+		return "forget-password";
 	}
 
 	@RequestMapping("/checkValidStudent")
@@ -52,29 +52,29 @@ public class Controller {
 		ModelAndView mv = new ModelAndView();
 		Student student = this.studentRepo.getStudentByNameandPassword(email, password);
 		if (student != null) {
-			mv.setViewName("student_home");
+			mv.setViewName("student-home");
 			mv.addObject("student", student);
 
 		} else {
-			mv.setViewName("studentlogin");
+			mv.setViewName("student-login");
 		}
 		return mv;
 	}
 
-	@RequestMapping("/signup_student")
+	@RequestMapping("/signup-student")
 	public String signupHandler() {
-		return "signup_student";
+		return "signup-student";
 	}
 
 	@RequestMapping(value = "/createaccount", method = RequestMethod.POST)
 	public String createAccountHandler(@ModelAttribute("student") Student student) {
 		this.studentRepo.save(student);
-		return "studentlogin";
+		return "student-login";
 	}
 
-	@RequestMapping("/adminlogin")
+	@RequestMapping("/admin-login")
 	public String adminLogin() {
-		return "adminlogin";
+		return "admin-login";
 	}
 
 	@RequestMapping("/checkValidAdmin")
@@ -85,7 +85,7 @@ public class Controller {
 		if (admin != null) {
 			HttpSession session = r.getSession();
 			session.setAttribute("admin", admin);
-			mv.setViewName("redirect:admin_dashboard");
+			mv.setViewName("redirect:admin-dashboard");
 		} else {
 			mv.setViewName("adminlogin");
 			mv.addObject("msg", new Msg("Invalid email or password"));
@@ -93,51 +93,50 @@ public class Controller {
 		return mv;
 	}
 
-	@RequestMapping("/admin_dashboard")
+	@RequestMapping("/admin-dashboard")
 	public String adminDashboard() {
-		return "admin_dashboard";
+		return "admin-dashboard";
 	}
 
-	@RequestMapping("/all_student")
-	public ModelAndView showAllStudent(HttpServletRequest r) {
+	@RequestMapping("/all-student")
+	public ModelAndView showAllStudent() {
 		ModelAndView mv = new ModelAndView();
 		List<Student> students = this.studentRepo.getAllStudent();
 		mv.addObject("students", students);
-		mv.setViewName("all_student");
+		mv.setViewName("all-student");
 		return mv;
 	}
 
 	@RequestMapping("/logout-admin")
 	public String logoutAdmin(HttpServletRequest r) {
 		r.getSession().invalidate();
-		return "adminlogin";
+		return "admin-login";
 	}
 
-	@RequestMapping("/deleteStudent/{sId}")
-	public String deleteStudent(@PathVariable("sId") int sid) {
+	@RequestMapping("/delete-student/{sId}")
+	public ModelAndView deleteStudent(@PathVariable("sId") int sid) {
 		this.studentRepo.deleteById(sid);
-		return "all_student";
+		return showAllStudent();
 	}
 
-	@RequestMapping("/editStudent/{sId}")
+	@RequestMapping("/edit-student/{sId}")
 	public String editStudent(@PathVariable("sId") int sid, Model model) {
 		Optional<Student> s = this.studentRepo.findById(sid);
 		Student student = s.get();
 		model.addAttribute("student", student);
-		return "edit_student";
+		return "edit-student";
 	}
 
 	@RequestMapping("/update-student")
-	public String updateStudent(@ModelAttribute("student") Student student) {
+	public ModelAndView updateStudent(@ModelAttribute("student") Student student) {
 		this.studentRepo.save(student);
-		return "redirect:all_student";
+		return showAllStudent();
 	}
 
 	@RequestMapping("/event-dashboard")
 	public ModelAndView eventDashboard() {
 			List<Event> events =(List<Event>) this.eventRepo.findAll();
-			System.out.println(events);
-			ModelAndView mv= new ModelAndView().addObject("events", events);
+            ModelAndView mv= new ModelAndView().addObject("events", events);
 			mv.setViewName("event-dashboard");
 			return mv;
 	}
@@ -158,4 +157,20 @@ public class Controller {
 		this.eventRepo.deleteById(eId);
 		return eventDashboard() ;
 	}
+	
+	@RequestMapping(value = "/edit-event/{eId}")
+	public String editEvent(@PathVariable int eId , Model m) {
+	Optional<Event> optional=this.eventRepo.findById(eId);
+	Event e=optional.get();
+	System.out.println(e);
+	m.addAttribute("event", e);
+	return "edit-event";
+	}
+	
+	@RequestMapping(value ="/update-event", method = RequestMethod.POST)
+	public ModelAndView updateEvent(@ModelAttribute("event") Event e) {
+		this.eventRepo.save(e);
+		return eventDashboard();
+	}
+	
 }

@@ -13,8 +13,8 @@
 
 
     <div class="container mt-5 text-center">
-        <a href="/studentlogin">Student Login & SignUp</a> ||
-        <a href="/adminlogin">Admin Portal</a>
+        <a href="/student-login">Student Login & SignUp</a> ||
+        <a href="/admin-login">Admin Portal</a>
     </div>
 <!-- Bootstrap 4 JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

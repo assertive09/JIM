@@ -31,11 +31,11 @@ if(admin==null){
 
 <body>
     <div class="masthead" style="background-image: url('/resources/img/home.jpeg');">
-    <%@include file="navbar_admin.jsp"%>
+    <%@include file="navbar-admin.jsp"%>
      <div class="color-overlay d-flex justify-content-center align-items-center"> -->
             <div class="container center text">
                 <div id="div1" class="text-center bg-secondary">
-                    <a href="all_student">Check All Students</a>
+                    <a href="all-student">Check All Students</a>
                 </div>
               &nbsp;
                 <div id="div2" class="text-center bg-secondary ">

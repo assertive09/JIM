@@ -29,7 +29,7 @@
 <body>
 	<div class="masthead"
 		style="background-image: url('/resources/img/home.jpeg');">
-		<%@include file="navbar_admin.jsp"%>
+		<%@include file="navbar-admin.jsp"%>
 	
 		<div
 			class="color-overlay d-flex justify-content-center align-items-center mt-5 ">

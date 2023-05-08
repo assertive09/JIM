@@ -39,7 +39,7 @@ if (admin == null) {
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active"><a class="nav-link"
-					href="/admin_dashboard">Home <span class="sr-only">(current)</span></a>
+					href="/admin-dashboard">Home <span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item active"><a class="nav-link"
 					href="/add-event-page">Add Event <span class="sr-only">(current)</span></a>

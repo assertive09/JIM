@@ -32,7 +32,7 @@ if (admin == null) {
 <body>
 	<div class="masthead"
 		style="background-image: url('/resources/img/home.jpeg');">
-		<%@include file="navbar_admin.jsp"%>
+		<%@include file="navbar-admin.jsp"%>
 		<div
 			class="color-overlay d-flex justify-content-center align-items-center">
 			<div class="container center text">
@@ -58,9 +58,9 @@ if (admin == null) {
 									<td>${s.mobileNumber}</td>
 									<td>${s.address}</td>
 									<td>${s.password}</td>
-									<td><a href="deleteStudent/${s.sId}"><i
+									<td><a href="delete-student/${s.sId}"><i
 											class="fas fa-trash text-danger"></i></a> &nbsp; <a
-										href="editStudent/${s.sId}"><i
+										href="edit-student/${s.sId}"><i
 											class="fas 	far fa-edit text-secondary"></i></a></td>
 								</tr>
 							</c:forEach>
